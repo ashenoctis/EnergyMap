@@ -30,7 +30,7 @@ interface ChartPanelProps {
   filters: FilterOptions;
 }
 
-const ChartPanel = ({ filters }: ChartPanelProps) => {
+const ChartPanel = ({ }: ChartPanelProps) => {
   // Example data - replace with actual data from your API
   const deviceStatusData = {
     labels: ['Active', 'Passive'],

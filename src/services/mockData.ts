@@ -1,5 +1,5 @@
 import { IoTDevice } from '../types';
-import { subHours, addHours } from 'date-fns';
+import { subHours } from 'date-fns';
 
 // Helper function to generate random coordinates
 const getRandomCoordinate = () => ({

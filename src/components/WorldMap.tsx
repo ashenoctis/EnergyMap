@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Box } from '@mui/material';
-import { FilterOptions, IoTDevice } from '../types';
+import { FilterOptions } from '../types';
 import { getMockDevices } from '../services/mockData';
 
 // Set Mapbox access token from environment variable
