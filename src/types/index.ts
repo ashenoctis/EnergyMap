@@ -10,15 +10,12 @@ export interface IoTDevice {
   lastUpdate: Date;
   status: 'normal' | 'alert';
   vehicleType?: string;
-  temperature: {
+  temperature?: {
     current: number;
     min: number;
     max: number;
   };
-  battery: {
-    level: number;
-    charging: boolean;
-  };
+  batteryCharge?: number;
 }
 
 export interface FilterOptions {

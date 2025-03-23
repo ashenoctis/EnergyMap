@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import { Box, Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material'
-import WorldMap from './components/WorldMap'
-import FilterPanel from './components/FilterPanel'
-import ChartPanel from './components/ChartPanel'
-import { FilterOptions } from './types'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 
 const theme = createTheme({
   palette: {
@@ -12,38 +10,53 @@ const theme = createTheme({
       main: '#2196f3',
     },
     secondary: {
-      main: '#f50057',
+      main: '#00bf72',
+    },
+    background: {
+      default: '#121212',
+      paper: '#1e1e1e',
     },
   },
-})
+  typography: {
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    h2: {
+      fontWeight: 700,
+    },
+  },
+  components: {
+    MuiAppBar: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides: {
+        root: {
+          backgroundColor: '#121212',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
+      },
+    },
+  },
+});
 
 function App() {
-  const [filters, setFilters] = useState<FilterOptions>({
-    geography: [],
-    vehicleTypes: [],
-    timeRange: '24h',
-    showAlerts: false,
-    dataSource: ['company', 'public'],
-  })
-
-  const handleFilterChange = (newFilters: FilterOptions) => {
-    setFilters(newFilters)
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth={false} sx={{ height: '100vh', py: 2 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 2 }}>
-          <FilterPanel filters={filters} onFilterChange={handleFilterChange} />
-          <Box sx={{ flex: 1, minHeight: 0 }}>
-            <WorldMap filters={filters} />
-          </Box>
-          <ChartPanel filters={filters} />
-        </Box>
-      </Container>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

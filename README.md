@@ -1,6 +1,6 @@
-# IoT Device World Map
+# The Energy Map
 
-A modern web application for visualizing IoT devices on a world map with interactive filters and charts.
+A modern web application for visualizing IoT device energy data on a world map with interactive filters and charts.
 
 ## Features
 
@@ -9,12 +9,16 @@ A modern web application for visualizing IoT devices on a world map with interac
   - Data source (Company/Public)
   - Time range (Last 24 hours/Last month)
   - Alert status
-- Pre-defined charts showing:
-  - Device status distribution
-  - Device activity over time
-  - Alert distribution
-- Real-time updates based on filter selections
+  - Vehicle type (Car, Truck, Bus, Motorcycle, Drone)
+- Real-time visualization of:
+  - Device temperature data (including alerts for temperatures > 50°C)
+  - Battery charge levels (including critical levels < 5%)
+- Interactive charts showing:
+  - Device status distribution (active vs passive)
+  - Battery charge distribution
+  - Temperature distribution
 - Responsive design for all screen sizes
+- Login page for accessing the dashboard
 
 ## Prerequisites
 
@@ -27,7 +31,7 @@ A modern web application for visualizing IoT devices on a world map with interac
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd energymap
+cd energy-map
 ```
 
 2. Install dependencies:
@@ -37,7 +41,7 @@ npm install
 
 3. Create a `.env` file in the root directory and add your Mapbox access token:
 ```
-VITE_MAPBOX_ACCESS_TOKEN=your_mapbox_access_token
+VITE_MAPBOX_ACCESS_TOKEN=pk.eyJ1IjoiYXNoZW5vY3RpcyIsImEiOiJja3NqMno4MHAwMHY4MnludTVleThmNGswIn0.zZzRs916H3-OP-lWzx5Mmw
 ```
 
 4. Start the development server:
@@ -47,24 +51,29 @@ npm run dev
 
 5. Open your browser and navigate to `http://localhost:5173`
 
-## API Integration
+## Mock Data
 
-The application expects an API endpoint at `/api/iot-devices` that returns IoT device data in the following format:
+The application includes mock data for demonstration purposes:
+- 100 devices with temperature over 50°C (red alerts)
+- 500 devices with battery charge around 5% (critical battery)
+- 500 devices with battery charge between 60-80%
+- A mix of active and passive devices distributed worldwide
 
-```typescript
-interface IoTDevice {
-  id: string;
-  name: string;
-  type: 'active' | 'passive';
-  location: {
-    lat: number;
-    lng: number;
-  };
-  dataSource: 'company' | 'public';
-  lastUpdate: Date;
-  status: 'normal' | 'alert';
-  vehicleType?: string;
-}
+## Project Structure
+
+```
+src/
+├── components/         # React components
+│   ├── FilterPanel.tsx # Filter controls
+│   ├── WorldMap.tsx    # Map visualization
+│   └── ChartPanel.tsx  # Data charts
+├── pages/              # Application pages
+│   ├── Home.tsx        # Login page
+│   └── Dashboard.tsx   # Main dashboard
+├── data/               # Mock data
+│   └── mockData.ts     # Generates mock IoT device data
+└── types/              # TypeScript type definitions
+    └── index.ts        # Shared types
 ```
 
 ## Technologies Used
@@ -72,6 +81,7 @@ interface IoTDevice {
 - React
 - TypeScript
 - Vite
+- React Router
 - Mapbox GL JS
 - Material-UI
 - Chart.js
