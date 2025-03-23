@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import MyDevices from './pages/MyDevices';
 
 const theme = createTheme({
   palette: {
@@ -18,10 +19,47 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
+    h1: {
+      fontFamily: "'Poppins', sans-serif",
+    },
     h2: {
+      fontFamily: "'Poppins', sans-serif",
       fontWeight: 700,
     },
+    h3: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    h4: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    h5: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    h6: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    subtitle1: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    subtitle2: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    body1: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    body2: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    button: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    caption: {
+      fontFamily: "'Poppins', sans-serif",
+    },
+    overline: {
+      fontFamily: "'Poppins', sans-serif",
+    }
   },
   components: {
     MuiAppBar: {
@@ -41,6 +79,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          fontFamily: "'Poppins', sans-serif",
+        }
+      }
+    }
   },
 });
 
@@ -52,6 +97,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/my-devices" element={<MyDevices />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
