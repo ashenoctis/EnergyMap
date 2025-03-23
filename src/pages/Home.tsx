@@ -1,11 +1,13 @@
-import { Box, Button, Container, Typography, Paper } from '@mui/material';
+import { Box, Button, Container, Typography, Paper, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import BackgroundImage from '../assets/IoT.avif';
+import energyImage from '../assets/IoT2.avif';
+import iotImage from '../assets/energy.avif';
 
 function Home() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // In a real app, this would trigger authentication
     navigate('/dashboard');
   };
 
@@ -16,7 +18,9 @@ function Home() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to right bottom, #051937, #004d7a, #008793, #00bf72, #a8eb12)',
+        backgroundImage: `url(${BackgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <Container maxWidth="md">
@@ -27,18 +31,46 @@ function Home() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            backgroundColor: 'rgba(24, 24, 24, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0.1)', // Glass effect
+            backdropFilter: 'blur(10px)', // Blur effect for glass
+            borderRadius: '8px',
             color: 'white',
+            transition: 'box-shadow 0.3s',
+            border: '1px solid rgba(255, 255, 255, 0.2)', // Subtle border
           }}
         >
-          <Typography variant="h2" component="h1" gutterBottom fontWeight="bold" sx={{ color: '#2196f3' }}>
+          <Typography 
+            variant="h2" 
+            component="h1" 
+            gutterBottom 
+            fontWeight="bold" 
+            sx={{ 
+              background: 'linear-gradient(90deg, #2196f3, #00bf72)', 
+              WebkitBackgroundClip: 'text', 
+              WebkitTextFillColor: 'transparent' 
+            }}
+          >
             The Energy Map
           </Typography>
           
           <Typography variant="h5" component="h2" gutterBottom textAlign="center" sx={{ mb: 4, color: 'rgba(255, 255, 255, 0.8)' }}>
             Monitor and analyze IoT device energy data from around the world
           </Typography>
-          
+
+          <Grid container spacing={2} sx={{ mb: 4 }}>
+            <Grid item xs={12} md={6}>
+              <img src={energyImage} alt="Energy" style={{ width: '100%', borderRadius: '8px' }} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <img src={iotImage} alt="IoT Devices" style={{ width: '100%', borderRadius: '8px' }} />
+            </Grid>
+          </Grid>
+
+          <Typography variant="body1" sx={{ mb: 4, color: 'rgba(255, 255, 255, 0.8)', textAlign: 'center' }}>
+            The Energy Map provides real-time insights into the performance and status of IoT devices across the globe. 
+            With our interactive dashboard, you can filter data by various parameters, visualize trends, and make informed decisions.
+          </Typography>
+
           <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
             <Button
               variant="contained"
@@ -81,4 +113,4 @@ function Home() {
   );
 }
 
-export default Home; 
+export default Home;
